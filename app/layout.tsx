@@ -1,12 +1,13 @@
-import { Geist, Geist_Mono, Roboto, Oxanium } from "next/font/google"
+import { Geist_Mono, Roboto, Oxanium } from "next/font/google"
+import { Toaster } from "@/components/ui/sonner"
 
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
+import Providers from './providers';
 
-const oxaniumHeading = Oxanium({subsets:['latin'],variable:'--font-heading'});
+const oxaniumHeading = Oxanium({ subsets: ['latin'], variable: '--font-heading' });
 
-const roboto = Roboto({subsets:['latin'],variable:'--font-sans'})
+const roboto = Roboto({ subsets: ['latin'], variable: '--font-sans' })
 
 const fontMono = Geist_Mono({
   subsets: ["latin"],
@@ -24,10 +25,11 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("antialiased", fontMono.variable, "font-sans", roboto.variable, oxaniumHeading.variable)}
     >
-      <body>
-        <ThemeProvider>
+      <body className="relative">
+        <Providers>
           {children}
-        </ThemeProvider>
+        </Providers>
+        <Toaster />
       </body>
     </html>
   )
